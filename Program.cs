@@ -95,6 +95,10 @@ do
      logger.Info($"CategoryId {id} selected");
          Category category = db.Categories.FirstOrDefault(c => c.CategoryId == id)!;
      Console.WriteLine($"{category.CategoryName} - {category.Description}");
+         foreach (Product p in category.Products)
+     {
+       Console.WriteLine(p.ProductName);
+     }
    }
    else if (String.IsNullOrEmpty(choice))
    {
