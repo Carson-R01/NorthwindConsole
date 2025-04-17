@@ -7,7 +7,7 @@ namespace NorthwindConsole.Model;
 public partial class Category
 {
    public int CategoryId { get; set; }
-   [Required]
+    [Required(ErrorMessage = "YO - Enter the name!")]
 
     public string CategoryName { get; set; } = null!;
 
