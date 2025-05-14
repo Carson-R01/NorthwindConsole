@@ -215,20 +215,27 @@ do
   }
   else if (choice == "9")
   {
-    var db = new DataContext();
-    Console.WriteLine("Enter Category ID to edit:");
-    int id = int.Parse(Console.ReadLine()!);
-    var cat = db.Categories.FirstOrDefault(c => c.CategoryId == id);
-    if (cat != null)
-    {
-        Console.WriteLine($"Editing {cat.CategoryName}");
-        Console.Write("New name: ");
-        cat.CategoryName = Console.ReadLine()!;
-        Console.Write("New description: ");
-        cat.Description = Console.ReadLine();
-        db.SaveChanges();
-        logger.Info("Category updated: {name}", cat.CategoryName);
-    }
+      var db = new DataContext();
+
+      Console.WriteLine("Enter Category ID to edit:");
+      int id = int.Parse(Console.ReadLine()!);
+      var cat = db.Categories.FirstOrDefault(c => c.CategoryId == id);
+      if (cat != null)
+      {
+          Console.WriteLine($"Editing {cat.CategoryName}");
+          Console.Write("New name: ");
+          cat.CategoryName = Console.ReadLine()!;
+          Console.Write("New description: ");
+          cat.Description = Console.ReadLine();
+
+          db.SaveChanges();
+          logger.Info("Category updated: {name}", cat.CategoryName);
+      }
+      else
+      {
+          Console.WriteLine("Category not found.");
+          logger.Warn("Attempted to edit non-existent CategoryId {id}", id);
+      }
   }
   else if (choice == "10")
   {
