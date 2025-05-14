@@ -192,7 +192,7 @@ do
     }
   }
   else if (choice == "8")
-{
+  {
     var db = new DataContext();
     Console.WriteLine("Enter Product ID:");
     int id = int.Parse(Console.ReadLine()!);
@@ -210,7 +210,37 @@ do
         Console.WriteLine($"Reorder: {p.ReorderLevel}");
         Console.WriteLine($"Discontinued: {p.Discontinued}");
     }
-}
+  }
+  else if (choice == "9")
+  {
+    var db = new DataContext();
+    Console.WriteLine("Enter Category ID to edit:");
+    int id = int.Parse(Console.ReadLine()!);
+    var cat = db.Categories.FirstOrDefault(c => c.CategoryId == id);
+    if (cat != null)
+    {
+        Console.WriteLine($"Editing {cat.CategoryName}");
+        Console.Write("New name: ");
+        cat.CategoryName = Console.ReadLine()!;
+        Console.Write("New description: ");
+        cat.Description = Console.ReadLine();
+        db.SaveChanges();
+        logger.Info("Category updated: {name}", cat.CategoryName);
+    }
+  }
+  else if (choice == "10")
+  {
+    var db = new DataContext();
+    Console.WriteLine("Enter Category ID:");
+    int id = int.Parse(Console.ReadLine()!);
+    var cat = db.Categories.Include("Products").FirstOrDefault(c => c.CategoryId == id);
+    if (cat != null)
+    {
+        Console.WriteLine(cat.CategoryName);
+        foreach (var p in cat.Products.Where(p => !p.Discontinued))
+            Console.WriteLine($"\t{p.ProductName}");
+    }
+  }
    else if (String.IsNullOrEmpty(choice))
    {
      break;
