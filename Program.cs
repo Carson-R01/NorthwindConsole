@@ -17,6 +17,10 @@ do
    Console.WriteLine("2) Add category");
    Console.WriteLine("3) Display Category and related products");
    Console.WriteLine("4) Display all Categories and their related products");
+   Console.WriteLine("5) Add product");
+   Console.WriteLine("6) Edit product");
+   Console.WriteLine("7) Display products (all/active/discontinued)");
+   Console.WriteLine("8) Display specific product");
    Console.WriteLine("Enter to quit");
    string? choice = Console.ReadLine();
    Console.Clear();
