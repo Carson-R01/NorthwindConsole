@@ -21,6 +21,8 @@ do
    Console.WriteLine("6) Edit product");
    Console.WriteLine("7) Display products (all/active/discontinued)");
    Console.WriteLine("8) Display specific product");
+   Console.WriteLine("9) Edit category");
+   Console.WriteLine("10) Display specific category and related active products");
    Console.WriteLine("Enter to quit");
    string? choice = Console.ReadLine();
    Console.Clear();
